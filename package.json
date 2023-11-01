@@ -1,0 +1,51 @@
+{
+  "name": "ifn-survey-tools",
+  "description": "Typescript library with tools to work with Influenzanet survey definition",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/influenzanet/survey-tools.ts.git"
+  },
+  "homepage": "https://github.com/influenzanet/survey-tools.ts",
+  "bugs": {
+    "url": "https://github.com/influenzanet/survey-tools.ts"
+  },
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    },
+    "./cli": {
+      "import": "./dist/cli.js",
+      "require": "./dist/cli.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:cli": "tsc --project cli-tsconfig.json && vite build --config cli-vite.config.ts",
+    "run-cli": "yarn build:cli && node dist-cli/cli.js .local/intake.json",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.6.2",
+    "vite-plugin-node": "^3.0.2"
+
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "static-jsx": "^1.0.1",
+    "survey-engine": "^1.2.1"
+  }
+}
