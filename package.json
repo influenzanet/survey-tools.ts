@@ -1,7 +1,6 @@
 {
   "name": "ifn-survey-tools",
   "description": "Typescript library with tools to work with Influenzanet survey definition",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/influenzanet/survey-tools.ts.git"
