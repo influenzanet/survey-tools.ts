@@ -8,6 +8,7 @@ const styles:Record<string, string> = {
     'translate-list': 'list-unstyled mb-0',
     'trans-code': 'badge bg-light text-primary my-1',
     'condition': 'condition',
+    'metadata': 'list-unstyled mb-1',
     
     // Expressions
     "expr":"expr",

@@ -8,6 +8,7 @@ import { SurveyItemView } from './item';
 import { format, fromUnixTime } from 'date-fns';
 import { ExpressionArgView, ExpressionView } from './expression';
 import { HtmlRendererContext } from '../renderer';
+import { MetadataView } from './metadata';
 
 interface SurveyProps {
     survey: Survey
@@ -49,6 +50,7 @@ export const SurveyPanel = (props:SurveyProps)=>{
 
     return <div class={ctx.style("survey")}>
         <h1>Survey <em>{definition.key}</em> (<span class={ ctx.style('item-version') }>{survey.versionId}</span>)</h1>
+        {survey.metadata ? <MetadataView meta={survey.metadata} context={ctx}/> : ''}
         <dl class={ctx.style("survey-props")}>
           <dt class="col-3">name</dt> 
           <dd class="col-9"><Translate texts={survey.props?.name} context={ctx}/></dd>
