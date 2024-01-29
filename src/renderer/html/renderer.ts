@@ -1,5 +1,5 @@
 import { Survey } from "survey-engine/data_types";
-import { RendererContext } from "../context";
+import { RenderContextOptions, RendererContext } from "../context";
 import { SurveyPage } from "./templates";
 import { HtmlRendererTheme } from "./theme";
 
@@ -7,8 +7,8 @@ export class HtmlRendererContext extends RendererContext {
 
     theme: HtmlRendererTheme;
 
-    constructor(languages: string[], theme: HtmlRendererTheme) {
-        super(languages);
+    constructor(opts: RenderContextOptions, theme: HtmlRendererTheme) {
+        super(opts);
         this.theme = theme;
     }
 
@@ -17,7 +17,6 @@ export class HtmlRendererContext extends RendererContext {
     }
 
 }
-
 
 export class HtmlRenderer {
     constructor() {

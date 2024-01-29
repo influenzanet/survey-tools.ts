@@ -1,11 +1,15 @@
 
 
 
+export interface RenderContextOptions {
+    languages: string[];
+}
+
 export class RendererContext {
     languages: string[]
 
-    constructor(languages: string[]) {
-        this.languages = languages;
+    constructor(opts:RenderContextOptions) {
+        this.languages = opts.languages;
     }
 
     style(name: string): string {
