@@ -142,6 +142,32 @@ var {
     border-radius: .3em;
 }
 
+.expr-args {
+    display:inline-block;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.expr-args li {
+    display:inline-block;
+    list-style-type: none;
+}
+
+.study-rule ul.exp-args-expanded {
+    margin-left: 1em;
+    display: block;
+    border-left: 2px solid lightblue;
+}
+
+.study-rule ul.exp-args-expanded.expr-args {
+ display: block;
+}
+
+.study-rule .exp-param-expanded {
+ display:block;
+}
+
+
 `;
 
 

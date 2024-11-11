@@ -2,6 +2,7 @@
 import { ExpressionArg, Expression } from 'survey-engine/data_types';
 import { RendererContext } from '../../context';
 import { Fragment, h } from "static-jsx";
+import { exp_arg_type } from './utils';
 
 interface ExpressionArgProps {
     arg: ExpressionArg
@@ -13,13 +14,6 @@ interface ExpressionProps {
     context: RendererContext
 }
 
-const exp_arg_type = function(arg: ExpressionArg) {
-    const t = arg.dtype;
-    if(typeof(t) != "undefined") {
-        return t;
-    }
-    return 'str';
-}
 
 export const ExpressionArgView = (props: ExpressionArgProps)=> {
     const arg = props.arg;
@@ -45,13 +39,19 @@ export const ExpressionView = (props: ExpressionProps)=> {
     const renderParams = (data: ExpressionArg[]) => {
         const ee: JSX.Element[] = [];
         const last = data.length - 1;
+        const hasExpression = data.some( (e:ExpressionArg) => typeof(e.exp) !== "undefined" );
+       
         data.forEach((a, i) => {
-            ee.push(<span class={ctx.style("expr-param")}><ExpressionArgView arg={a} context={ctx}/></span>);
-            if(i != last) {
-                ee.push(<span>, </span>)
-            }
-        });
-        return ee;
+            const className = ctx.style("expr-param") + (hasExpression ? " exp-param-expanded" : '');
+            const v = (<li class={className}>
+                        <ExpressionArgView arg={a} context={ctx}/>
+                        { i != last ? <span>, </span> : '' }
+                      </li>);
+                      
+            ee.push(v);
+         });
+        const className = "expr-args" + (hasExpression ? " exp-args-expanded" : '') ;
+        return <ul class={className}>{ ee }</ul>;
     }
 
     return <span class={ctx.style("expr")}>

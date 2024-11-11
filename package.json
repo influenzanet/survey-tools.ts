@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/influenzanet/survey-tools.ts"
   },
-  "version": "0.0.2",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
@@ -29,6 +29,7 @@
     "build": "tsc && vite build",
     "build:cli": "tsc --project cli-tsconfig.json && vite build --config cli-vite.config.ts",
     "run-cli": "yarn build:cli && node dist-cli/cli.js .local/intake.json",
+    "run-cli-rules": "yarn build:cli && node dist-cli/cli.js .local/studyRules.json",
     "preview": "vite preview"
   },
   "devDependencies": {
