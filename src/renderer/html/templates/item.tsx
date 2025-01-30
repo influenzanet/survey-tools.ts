@@ -10,10 +10,22 @@ export interface ItemProps {
     context: RendererContext
 }
 
+const asItemKey = (key:string):string => {
+  const k = key.lastIndexOf('.');
+  if(k < 0) {
+    return key;
+  }
+  return key.substring(k + 1);
+}
+
+
 export const SurveyItemView = (props: ItemProps) => {
   const ctx = props.context;
   const item = props.item;
 
+  const itemKey = asItemKey(item.key);
+
+  const mapping = ctx.mappingItem(itemKey);
 
   const renderGroupItem = (g: SurveyGroupItem) => {
       return <Fragment>
@@ -35,7 +47,7 @@ export const SurveyItemView = (props: ItemProps) => {
     {s.components  ? (
           <div class="item-components">
           <h5>Components</h5>
-          <ItemComponentView comps={s.components} context={ctx}/>
+          <ItemComponentView comps={s.components} context={ctx} mapping={mapping}/>
           </div>
       ) : ''
     }
@@ -49,7 +61,7 @@ export const SurveyItemView = (props: ItemProps) => {
 
   return (
     <div class={ctx.style('survey-item')}>
-        <h3><var class={ctx.style('key')}>{ item.key }</var></h3>
+        <h3><var class={ctx.style('item-key')}>{ ctx.icon("key") }{ item.key }</var></h3>
         {item.metadata ? <MetadataView meta={item.metadata} context={ctx}/> : ''}
         {item.follows ? <TagListView tags={item.follows} context={ctx}/> : ''}
         {item.condition ? (
@@ -75,9 +87,10 @@ export const ValidationsView = (props: ValidationsProps) => {
   if(!props.validations) {
     return <></>;
   }
+  const ctx = props.context;
   return <dl class="row">
     {props.validations.map(v => <Fragment>
-        <dt class="col-2">{v.key} <span class={props.context.style('validation-type')}>{v.type}</span></dt>
+        <dt class="col-2"><span class={ ctx.style("validation-key") }>{ ctx.icon("key") } {v.key}</span> <span class={props.context.style('validation-type')}>{v.type}</span></dt>
         <dd class="col-10">
           {typeof(v.rule) == "boolean" ? v.rule : <ExpressionView exp={v.rule} context={props.context}/>}
         </dd>

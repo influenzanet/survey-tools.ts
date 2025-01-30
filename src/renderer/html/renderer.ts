@@ -3,6 +3,7 @@ import { RenderContextOptions, RendererContext } from "../context";
 import { SurveyPage } from "./templates";
 import { HtmlRendererTheme } from "./theme";
 import { RulesPage } from "./templates/rules";
+import { RawHtml } from "static-jsx";
 
 export class HtmlRendererContext extends RendererContext {
 
@@ -15,6 +16,10 @@ export class HtmlRendererContext extends RendererContext {
 
     style(name: string): string {
         return this.theme.style(name);
+    }
+
+    icon(name: string): RawHtml {
+        return this.theme.icon(name);
     }
 
 }

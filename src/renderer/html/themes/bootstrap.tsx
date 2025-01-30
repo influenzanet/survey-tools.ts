@@ -1,10 +1,11 @@
 
 import { HtmlRendererTheme } from '../theme';
-import { Fragment, h } from "static-jsx";
+import { Fragment, h, RawHtml } from "static-jsx";
 
 const styles:Record<string, string> = {
     // Generic
-    'key': 'key',
+    'key': 'badge bg-danger',
+    'item-key': 'text-danger',
     'translate-list': 'list-unstyled mb-0',
     'trans-code': 'badge bg-light text-primary my-1',
     'condition': 'condition',
@@ -26,23 +27,33 @@ const styles:Record<string, string> = {
     
     // SurveyItem
     'survey-item':'survey-item',
-    'validation-type': "badge bg-danger", // SingleItem validation type
+    'validation-key': "badge bg-danger",
+    'validation-type': "text-danger", // SingleItem validation type
     'item-version': 'badge bg-success',
     
     // Survey Item Component
     'components': 'survey-component',
     'components-children': '',
+    'component-key': 'badge bg-danger',
     'component-content':'component-content',
     'component-properties': 'row',
     'component-properties-dt':'col text-align-right',
     'component-properties-dd':'col',
-    'role': 'badge bg-warning',
+    "component-expression": "d-inline-block",
+    "component-expression-title": "",
+    'role': 'badge bg-warning me-1',
     'group-items':'group-items',
     "selection-method":"selection-method",
     'item-type': 'item-type', // Type of item
     'style': 'style ms-1',
     'style-dt': '',
     'style-dd': '',
+
+    // Variables mapping
+    'variable-label': 'badge bg-primary me-1',
+    'variable-database': 'badge bg-primary me-1',
+    'variable-name': 'badge bg-primary me-1',
+    'legend': 'card bg-light m-1',
 }
 
 const css = `
@@ -170,6 +181,14 @@ var {
 
 `;
 
+const icons: Record<string, string> = {
+    'variable-database':'database',
+    'variable-name': 'subscript',
+    'variable-label': 'tag',
+    'key': 'key',
+    'role': 'bolt',
+}
+
 
 export class BootstrapTheme implements HtmlRendererTheme {
 
@@ -177,9 +196,19 @@ export class BootstrapTheme implements HtmlRendererTheme {
         return styles[name] ?? 'unknown-'+name;
     }
 
+    icon(name: string): RawHtml {
+        const icon  = icons[name] ?? '';
+        if(icon) {
+            return <i class={"me-1 fas fa-" + icon}></i>
+        }
+        return <i>?</i>
+    }
+
     head() {
         return (<Fragment>
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css" integrity="sha512-DzC7h7+bDlpXPDQsX/0fShhf1dLxXlHuhPBkBo/5wJWRoTU6YL7moeiNoej6q3wh5ti78C57Tu1JwTNlcgHSjg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>{css}</style>
         </Fragment>)
         

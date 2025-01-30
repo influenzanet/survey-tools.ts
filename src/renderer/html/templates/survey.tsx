@@ -79,6 +79,16 @@ export const SurveyPanel = (props:SurveyProps)=>{
         }
         {survey.availableFor ? <p>Available for {survey.availableFor} </p> : ''}
         {survey.requireLoginBeforeSubmission ? <p>Required login for submission</p> : ''}
+      <div class={ctx.style("legend")}>
+        <h2>Legend</h2>
+        <ul>
+          <li><span class={ ctx.style('key') }>{ctx.icon('key')} key</span> : Component key</li>
+          <li><span class={ ctx.style('role') }>{ctx.icon('role')} role</span> : Component role</li>
+          <li><span class={ctx.style('variable-label')}>{ctx.icon('variable-label')}</span> : Encoding label, response value are stored as code, and are recoded with explicit label in the analysis</li>
+          <li><span class={ctx.style('variable-name')}>{ctx.icon('variable-name')}</span> : Name of the variable used in the analysis for the response</li>
+          <li><span class={ctx.style('variable-database')}>{ctx.icon('variable-database')}</span> : Name of the column in the database used to store this reponse value</li>
+        </ul>
+      </div>
       </div>
 }
 
