@@ -39,8 +39,8 @@ const styles:Record<string, string> = {
     'component-properties': 'row',
     'component-properties-dt':'col text-align-right',
     'component-properties-dd':'col',
-    "component-expression": "d-inline-block",
-    "component-expression-title": "",
+    "component-expression": "d-inline-block p-1 border",
+    "component-expression-title": "badge bg-indigo",
     'role': 'badge bg-warning me-1',
     'group-items':'group-items',
     "selection-method":"selection-method",
@@ -57,6 +57,11 @@ const styles:Record<string, string> = {
 }
 
 const css = `
+
+.bg-indigo {
+    background-color: var(--bs-purple);
+}
+
 .survey {
     margin: .4rem;
 }
@@ -187,8 +192,8 @@ const icons: Record<string, string> = {
     'variable-label': 'tag',
     'key': 'key',
     'role': 'bolt',
+    'component-expression':'gear',
 }
-
 
 export class BootstrapTheme implements HtmlRendererTheme {
 

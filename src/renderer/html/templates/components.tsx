@@ -69,7 +69,7 @@ export const ItemComponentView = (props: ItemComponentProps) => {
         }
         return(
         <div class={ctx.style("component-expression")}>
-            <span class={ctx.style("component-expression-title")}>{title}</span>
+            <span class={ctx.style("component-expression-title")}> { ctx.icon("component-expression") } {title}</span>
             <ExpressionView exp={exp} context={ctx}/>
         </div> 
         )
@@ -99,10 +99,12 @@ export const ItemComponentView = (props: ItemComponentProps) => {
     let encodingLabel : string = ''
     
     if(mapping) {
-        if(inPath(['rg.mcg'], props.parentPath) && comp.role === 'option') {
+        
+        if(inPath(['rg.mcg', 'rg.scg', 'rg.rsca'], props.parentPath)) {
             variables = mapping.getVariablesWithResponse(comp.key);
         }
-        if(props.variable && comp.role == 'option' && comp.key) {
+
+        if(props.variable && typeof(comp.key) != "undefined" && comp.key !== '') {
             encodingLabel = props.variable.recodeLabel(comp.key);
         }
 
@@ -118,6 +120,8 @@ export const ItemComponentView = (props: ItemComponentProps) => {
        {r.dtype ? <div class={ ctx.style('component-dtype')}><code>{r.dtype}</code></div> : ''}
        { isItemGroupComponent(comp) ? renderGroupComponent(comp, variableHeader) : ''}
        {comp.content ?  <div class={ctx.style('component-content')}><Translate texts={comp.content} context={ctx} /></div> : ''}
+       {variables ? renderVariables(variables) : ''}
+       {encodingLabel ? <span class={ctx.style("variable-label")}>{ ctx.icon('variable-label') } {encodingLabel}</span> : ''}
        {renderExpFlag('Disabled', comp.disabled)}
        {renderExpFlag('displayCondition', comp.displayCondition)}
        {comp.description ? (
@@ -128,8 +132,6 @@ export const ItemComponentView = (props: ItemComponentProps) => {
        ) : ''}
        {comp.properties ? renderProperties(ArrayOf(comp.properties), 'component-properties') : ''}
        {comp.style ? renderStyle(comp.style, 'style') : ''}
-       {variables ? renderVariables(variables) : ''}
-       {encodingLabel ? <span class={ctx.style("variable-label")}>{ ctx.icon('variable-label') } {encodingLabel}</span> : ''}
        </div>
     )
 }

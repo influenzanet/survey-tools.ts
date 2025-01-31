@@ -28,7 +28,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build:cli": "tsc --project cli-tsconfig.json && vite build --config cli-vite.config.ts",
-    "run-cli": "yarn build:cli && node dist-cli/cli.js .local/intake.json --mapping=.local/surveys_mapping.json",
+    "run-cli-intake": "yarn build:cli && node dist-cli/cli.js .local/intake.json --mapping=.local/surveys_mapping.json",
+    "run-cli-weekly": "yarn build:cli && node dist-cli/cli.js .local/weekly.json --mapping=.local/surveys_mapping.json",
+    "run-cli-vac": "yarn build:cli && node dist-cli/cli.js .local/vaccination.json --mapping=.local/surveys_mapping.json",
     "run-cli-rules": "yarn build:cli && node dist-cli/cli.js .local/studyRules.json",
     "preview": "vite preview"
   },

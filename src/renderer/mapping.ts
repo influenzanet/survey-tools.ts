@@ -43,6 +43,8 @@ export class SurveyMapping {
     }
 }
 
+type VariablefilterFunc = (v:VariableMappgingSpec)=>boolean;
+
 export class QuestionMapping {
     variables: VariableMappgingSpec[];
     
@@ -62,6 +64,11 @@ export class QuestionMapping {
             return [];
         }
         return this.variables.filter(v => v.response === responseKey).map(v => new VariableMapping(v));
+    }
+
+    getVariables(filter?: VariablefilterFunc): VariableMapping[] {
+        const vv = filter ? this.variables.filter(filter) : this.variables;
+        return vv.map(v => new VariableMapping(v));
     }
 }
 
@@ -99,7 +106,6 @@ export class VariableMapping {
         // Return the label (key of the recodes record)
         return r[0];
     }
-
 
 }
 

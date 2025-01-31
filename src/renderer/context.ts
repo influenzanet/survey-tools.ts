@@ -17,6 +17,7 @@ export class RendererContext {
 
     constructor(opts:RenderContextOptions) {
         this.languages = opts.languages;
+        this.mapping = opts.mapping;
     }
 
     style(name: string): string {
