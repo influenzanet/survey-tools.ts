@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/influenzanet/survey-tools.ts"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
